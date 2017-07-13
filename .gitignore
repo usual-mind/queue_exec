@@ -1,0 +1,9 @@
+#PHP
+
+.DS_Store
+.idea/modules.xml
+.idea/queue.iml
+.idea/workspace.xml
+configs/config.db.class.php
+log/dblog.txt
+
