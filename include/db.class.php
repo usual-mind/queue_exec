@@ -43,7 +43,7 @@ class DB {
         if(!mysqli_select_db($this->link_id, $dbname)){
             $this->halt("数据库选择失败");
         }
-        mysqli_query("set names " . $charset);
+        mysqli_query($this->link_id,"set names " . $charset);
     }
 
     /**
@@ -54,6 +54,7 @@ class DB {
     public function query($sql){
         $this->write_log("查询 " . $sql);
         $query = mysqli_query($this->link_id, $sql);
+        //var_dump("query:".$query);
         if(!$query){
             $this->halt("查询失败 " . $sql);
         }
@@ -233,7 +234,9 @@ class DB {
 
         $this->write_log("更新 ".$sql);
         if(!$this->query($sql)) return false;
-        return true;
+        $affect_rows = mysqli_affected_rows($this->link_id);
+
+        return $affect_rows;
     }
 
     /**
